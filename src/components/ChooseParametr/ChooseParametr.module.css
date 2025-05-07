@@ -1,0 +1,29 @@
+.list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.radio[type=radio]{
+    display: none;
+}
+
+.radio[type=radio] + .radioLabel{
+    display: inline-block;
+    padding: 9px 20px;
+    border-radius: 12px;
+    background-color: rgba(82, 110, 255, 1);
+    opacity: 20%;
+    color: white;
+}
+
+.radio[type=radio]:checked + .radioLabel{
+    opacity: 100%;
+}
+
+@media (min-width: 768px) { 
+    .radio[type=radio] + .radioLabel{
+        padding: 16px 32px;
+        
+    }
+}

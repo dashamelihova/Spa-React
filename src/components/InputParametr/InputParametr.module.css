@@ -1,0 +1,42 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1;
+}
+
+.label{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    vertical-align: middle;
+}
+
+.input{
+    width: 100%;
+    padding: 24px 23px;
+    height: 56px;
+    border-radius: 8px;
+    border: 1px solid rgba(17, 17, 17, 0.32);
+    box-sizing: border-box;
+    color:rgba(17, 17, 17, 0.64);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    font-family: 'Roboto';
+    vertical-align: middle;
+}
+
+.input::placeholder{
+    color: rgba(17, 17, 17, 0.32);
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    vertical-align: middle;
+}
+
+.input:focus{
+    border-color: rgba(17, 17, 17, 0.64);
+    color:rgba(17, 17, 17, 1);
+}

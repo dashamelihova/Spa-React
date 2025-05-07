@@ -1,0 +1,95 @@
+.wrapper{
+    background-color: rgba(82, 110, 255, 1);
+    padding: 42px 52px;
+    border-radius: 18px;
+    width: 100%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    box-sizing: border-box;
+}
+
+.header{
+    display: flex;
+    flex-direction: column;
+    gap: 24px; 
+    
+}
+
+.footer{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.title{
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 36px;
+    vertical-align: middle;
+    font-family: 'Inter';
+}
+
+.results{
+    display: flex;
+    flex-direction: column;
+    column-gap: 54px;
+    row-gap: 22px;
+}
+
+.result{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.result p{
+    font-family: 'Inter';
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+}
+
+.resultLabel{
+    color: rgba(255, 255, 255, 0.64);
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+}
+
+.btn{
+    border-radius: 12px;
+    padding: 15px 32px;
+    background-color: white;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    font-family: 'Roboto';
+    cursor: pointer;
+}
+
+.btn:first-child{
+    color: rgba(82, 110, 255, 1);
+}
+
+.btn:last-child{
+    color: rgba(90, 205, 102, 1);
+}
+
+.btn:hover{
+    opacity: 20%;
+}
+
+@media (min-width: 768px) { 
+    .title{
+        font-size: 32px;
+        line-height: 40px;
+    }
+    .results{
+        flex-direction: row;
+    }
+    .footer{
+        flex-direction: row;
+    }
+}

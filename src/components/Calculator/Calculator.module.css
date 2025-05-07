@@ -1,0 +1,93 @@
+.wrapper{
+    width: calc(100% - 2px);
+    padding: 22px 28px 0 28px;
+    background-color: white;
+    color: rgba(17, 17, 17, 0.8);
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    position: relative;
+}
+
+.main{
+    display: flex;
+    flex-direction: column; 
+    gap: 42px;
+    color: rgba(17, 17, 17, 0.8);
+}
+
+.footer{
+    display: flex;
+    min-height: 168px;
+    align-items: center;
+}
+
+.title{
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+    vertical-align: middle;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.closeBtn{
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    padding: 4px;
+    box-sizing: border-box;
+    right: 28px;
+    top: 22px;
+    cursor: pointer;
+}
+
+.closeBtn:hover{
+    opacity: 20%;
+}
+
+hr{
+    border: 1px dashed rgba(82, 110, 255, 1);
+    opacity: 20%;
+}
+
+.selectionContainer{
+    display: flex;
+    flex-direction: column;      
+}
+
+.inputContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.addedParamContainer{
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+    column-gap: 16px;
+    flex-wrap: wrap;
+}
+
+@media (min-width: 768px) { 
+    .selectionContainer{
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .inputContainer{
+        flex-direction: row; 
+    }
+
+    .addedParamContainer{
+        flex-direction: row;
+    }
+    
+}

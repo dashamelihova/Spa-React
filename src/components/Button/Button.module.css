@@ -1,0 +1,30 @@
+
+.button{
+    width: 100%;
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    padding: 15px 32px;
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    background-color: rgba(82, 110, 255, 1);
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.button:hover{
+    opacity: 30%;
+}
+
+.button img{
+    width: 24px;
+    height: 24px;
+}
+
+@media (min-width: 768px) { 
+    .button{
+        width: auto;
+    }
+}
