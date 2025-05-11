@@ -14,17 +14,17 @@ class Results extends Component{
             <div className={styles.wrapper}>
                 <div className={styles.header}>
                     <h2 className={styles.title}>Результаты</h2>
-                    <div className={styles.results}>
+                    <div className={styles.resultsContainer}>
                         <div className={styles.result}>
-                            <p>{countRoll}</p>
+                            <p className={styles.resultValue}>{countRoll}</p>
                             <span className={styles.resultLabel}> Кол-во рулонов</span>
                         </div>
                         <div className={styles.result}>
-                            <p>{countWallpaper} м2</p>
+                            <p className={styles.resultValue}>{countWallpaper} м2</p>
                             <span className={styles.resultLabel}> Кол-во m2 обоев</span>
                         </div>
                         <div className={styles.result}>
-                            <p>{pastingArea} м2</p>
+                            <p className={styles.resultValue}>{pastingArea} м2</p>
                             <span className={styles.resultLabel}>Площадь оклейки</span>
                         </div>
                     </div>

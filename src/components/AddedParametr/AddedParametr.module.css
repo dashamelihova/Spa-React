@@ -1,4 +1,4 @@
-.container{
+.addedParametrContainer{
     width: 100%;
     height: 180px;
     border: 1px dashed rgba(82, 110, 255, 1); 
@@ -11,13 +11,13 @@
     box-sizing: border-box;
 }
 
-.header{
+.addedParametrHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.closeBtn{
+.addedParametrCloseButtonIcon {
     width: 24px;
     height: 24px;
     padding: 4px;
@@ -25,29 +25,29 @@
     box-sizing: border-box;
 }
 
-.closeBtn:hover{
-    opacity: 20px;
+.addedParametrCloseButtonIcon:hover{
+    opacity: 20%;
 }
 
-.label{
+.addedParametrLabel {
     font-weight: 500;
     font-size: 20px;
     line-height: 28px;
     vertical-align: middle;
 }
 
-.inputContainer{
+.addedParametrInputContainer {
     width: 100%;
     display: flex;
     gap: 16px;
 }
 
-.inputContainer *{
+.addedParametrInputContainer  *{
     flex: 1;
 }
 
 @media (min-width: 768px) { 
-    .container{
+    .addedParametrContainer {
         width: 266px;
         height: 180px;
     }

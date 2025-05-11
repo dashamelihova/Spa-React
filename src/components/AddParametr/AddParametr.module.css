@@ -1,4 +1,4 @@
-.container{
+.addParametrContainer{
     width: 100%;
     height: 180px;
     border: 1px dashed rgba(82, 110, 255, 1); 
@@ -10,7 +10,7 @@
     gap: 10px;
 }
 
-.button{
+.addParametrButton{
     width: 44px;
     height: 44px;
     border-radius: 100px;
@@ -19,18 +19,18 @@
     cursor: pointer;
 }
 
-.button:hover{
+.addParametrButton:hover{
    opacity: 20%; 
 }
 
-.buttonImg{
+.addParametrButtonIcon{
     width: 24px;
     height: 24px;
     padding: 1px;
     box-sizing: border-box;
 }
 
-.helpText{
+.addParametrHelpText{
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
@@ -38,7 +38,7 @@
 }
 
 @media (min-width: 768px) { 
-    .container{
+    .addParametrContainer{
         width: 266px;
         height: 180px;
     }

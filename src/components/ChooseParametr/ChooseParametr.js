@@ -1,7 +1,7 @@
 import styles from './ChooseParametr.module.css';
 
 
-function Parametr({children, name, id, onChange, isChoosen}){
+function ChooseParametrItem({children, name, id, onChange, isChoosen}){
     
     return(
         < >
@@ -19,6 +19,19 @@ function Parametr({children, name, id, onChange, isChoosen}){
     );
 }
 
+
+function formatParam(param){
+  let result = '';
+  for (let i = 0; i < param.length; i++) {
+    if (i > 0) {
+      result += ' x ';  // Разделитель между элементами
+    }
+    result += (param[i] === 0) ? '0' : `${param[i]}м`;
+    console.log(result);
+  }
+  return result;
+}
+
 function ChooseParametr({dataArray, name, onSelect}){
     const handleRadioChange = (e) => {
         if(onSelect){
@@ -30,15 +43,15 @@ function ChooseParametr({dataArray, name, onSelect}){
     const elements = dataArray.map((item, index) => {
         const id = `${name}-${index}`
         return(
-            <Parametr 
+            <ChooseParametrItem 
                 key={id} 
                 name={name} 
                 id={id}
                 isChoosen={item.isChoosen}
                 onChange={handleRadioChange}
             > 
-                {item.param} 
-            </Parametr>
+                {formatParam(item.param)} 
+            </ChooseParametrItem>
         )
     });
 

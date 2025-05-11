@@ -17,13 +17,13 @@ class Calculator extends Component{
         super(props);
         this.state ={
             rollParam:[
-                {param: '1.06 x 10м', isChoosen: true},
-                {param: '1.06 x 25м', isChoosen: false},
+                {param: [1.06, 10], isChoosen: true},
+                {param: [1.06, 25], isChoosen: false},
             ],
             rapport:[
-                {param: '0', isChoosen: false},
-                {param: '0.32м', isChoosen: true},
-                {param: '0.64м', isChoosen: false},
+                {param: [0], isChoosen: false},
+                {param: [0.32], isChoosen: true},
+                {param: [0.64], isChoosen: false},
             ],
             windowsParam:[
                 
@@ -95,8 +95,8 @@ class Calculator extends Component{
 
                     <img className={styles.closeBtn} src={closeBtn} alt="Close Button" />
 
-                    <div className={styles.container}>
-                        <h2 className={styles.title}>Параметры комнаты</h2>
+                    <div className={styles.section}>
+                        <h2 className={styles.sectionTitle}>Параметры комнаты</h2>
                         <div className={styles.inputContainer}>
                             <InputParametr 
                                 title={'Длина м'} 
@@ -117,8 +117,8 @@ class Calculator extends Component{
                     </div>
 
                     <div className={styles.selectionContainer}>
-                        <div className={styles.container}>
-                            <h2 className={styles.titleBlock}>Парметры рулона</h2>
+                        <div className={styles.section}>
+                            <h2 className={styles.sectionTitle}>Парметры рулона</h2>
                             <ChooseParametr 
                                 dataArray={rollParam} 
                                 name="rollParam" 
@@ -126,8 +126,8 @@ class Calculator extends Component{
                                 />
                         </div>
 
-                        <div className={styles.container}>
-                            <h2 className={styles.titleBlock}>Раппорт</h2>
+                        <div className={styles.section}>
+                            <h2 className={styles.sectionTitle}>Раппорт</h2>
                             <ChooseParametr 
                                 dataArray={rapport} 
                                 name="rapport"
@@ -136,8 +136,8 @@ class Calculator extends Component{
                         </div>
                     </div>
 
-                    <div className={styles.container}>
-                        <h2 className={styles.titleBlock}>Параметры окон</h2>
+                    <div className={styles.section}>
+                        <h2 className={styles.sectionTitle}>Параметры окон</h2>
                         <div className={styles.addedParamContainer}>
                             <ListAddedParametr
                                 title='Окно'
@@ -154,8 +154,8 @@ class Calculator extends Component{
                         
                     </div>
 
-                    <div className={styles.container}>
-                        <h2 className={styles.titleBlock}>Параметры дверей</h2>
+                    <div className={styles.section}>
+                        <h2 className={styles.sectionTitle}>Параметры дверей</h2>
                         <div className={styles.addedParamContainer}>
                             <ListAddedParametr
                                 title='Дверь' 

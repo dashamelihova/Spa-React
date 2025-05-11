@@ -4,17 +4,21 @@ import InputParametr from '../InputParametr/InputParametr';
 
 function AddedParametr({name, title, data, onDelete, onUpdateInputParam}){
     return (
-        <div className={styles.container}>
-            <div className={styles.header}>
-                <p className={styles.label}> {title} </p>
-                <img 
-                    className={styles.closeBtn} 
-                    src={closeBtn} 
-                    alt="Close Button" 
-                    onClick={onDelete}/>
+        <div className={styles.addedParametrContainer}>
+            <div className={styles.addedParametrHeader}>
+                <p className={styles.addedParametrLabel}> {title} </p>
+                {/* <button className={styles.addedParametrCloseButton} onClick={onDelete}> */}
+                    <img 
+                        className={styles.addedParametrCloseButtonIcon} 
+                        src={closeBtn} 
+                        alt="Close Button" 
+                        onClick={onDelete}
+                    />
+                {/* </button> */}
+                
             </div>
             
-            <div className={styles.inputContainer}>
+            <div className={styles.addedParametrInputContainer}>
                 <InputParametr 
                     title={'Высота м'} 
                     startParam={0} 

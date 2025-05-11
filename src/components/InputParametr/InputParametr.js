@@ -19,18 +19,20 @@ class InputParametr extends Component{
 
     render(){
         const {title, startParam, name} = this.props;
+        const {param} = this.state;
         return(
-            <div className={styles.container}>
-                <label className={styles.lable} htmlFor={name}>
+            <div className={styles.inputParameter}>
+                <label className={styles.inputParameterLabel} htmlFor={name}>
                     {title}
                 </label>  
                 <input 
-                    className={styles.input}
+                    className={styles.inputParameterInput}
                     type="text" 
                     placeholder={startParam} 
                     id={name}
-                    onChange={this.onUpdateInputParam}/>
-                
+                    onChange={this.onUpdateInputParam}
+                    value={param}
+                />
             </div>
         );
     }

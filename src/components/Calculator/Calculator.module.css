@@ -23,7 +23,7 @@
     align-items: center;
 }
 
-.title{
+.sectionTitle{
     font-family: 'Inter';
     font-weight: 600;
     font-size: 24px;
@@ -31,7 +31,7 @@
     vertical-align: middle;
 }
 
-.container{
+.section{
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -59,13 +59,13 @@ hr{
 
 .selectionContainer{
     display: flex;
-    flex-direction: column;      
+    flex-direction: column;
+    row-gap: 42px;      
 }
 
 .inputContainer{
     display: flex;
     flex-direction: column;
-    gap: 16px;
 }
 
 .addedParamContainer{

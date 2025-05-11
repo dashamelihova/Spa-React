@@ -1,18 +1,18 @@
-.container{
+.inputParameter{
     display: flex;
     flex-direction: column;
     gap: 8px;
     flex-grow: 1;
 }
 
-.label{
+.inputParameterLabel{
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
     vertical-align: middle;
 }
 
-.input{
+.inputParameterInput{
     width: 100%;
     padding: 24px 23px;
     height: 56px;
@@ -27,7 +27,7 @@
     vertical-align: middle;
 }
 
-.input::placeholder{
+.inputParameterInput::placeholder{
     color: rgba(17, 17, 17, 0.32);
     font-family: 'Roboto';
     font-weight: 500;
@@ -36,7 +36,7 @@
     vertical-align: middle;
 }
 
-.input:focus{
+.inputParameterInput:focus{
     border-color: rgba(17, 17, 17, 0.64);
     color:rgba(17, 17, 17, 1);
 }
