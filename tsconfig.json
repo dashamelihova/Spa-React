@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es5", // Для совместимости с браузерами
+    "module": "esnext", // Современные модули
+    "jsx": "react-jsx", // Важно! Указывает, что JSX — это React
+    "strict": true, // Строгие проверки типов
+    "moduleResolution": "node", // Для работы с модулями
+    "esModuleInterop": true, // Для совместимости импортов
+    "skipLibCheck": true, // Ускоряет компиляцию
+    "forceConsistentCasingInFileNames": true // Проверяет регистр
+  },
+  "include": ["src", "*.d.ts"] // Включает src и declarations.d.ts
+}

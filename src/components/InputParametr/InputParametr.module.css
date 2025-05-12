@@ -25,6 +25,10 @@
     line-height: 24px;
     font-family: 'Roboto';
     vertical-align: middle;
+    /* Стили для убирания стрелок */
+    -webkit-appearance: none; /* Убирает стрелки в Chrome, Safari, Edge */
+    -moz-appearance: textfield; /* Убирает стрелки в Firefox */
+    appearance: none; /* Стандартное свойство для всех браузеров */
 }
 
 .inputParameterInput::placeholder{
@@ -39,4 +43,11 @@
 .inputParameterInput:focus{
     border-color: rgba(17, 17, 17, 0.64);
     color:rgba(17, 17, 17, 1);
+}
+
+/* Дополнительно убираем псевдоэлементы спиннеров */
+.inputParameterInput::-webkit-inner-spin-button,
+.inputParameterInput::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
