@@ -21,8 +21,8 @@ class Calculator extends Component{
                 {param: [1.06, 25], isChoosen: false},
             ],
             rapport:[
-                {param: [0], isChoosen: false},
-                {param: [0.32], isChoosen: true},
+                {param: [0], isChoosen: true},
+                {param: [0.32], isChoosen: false},
                 {param: [0.64], isChoosen: false},
             ],
             windowsParam:[
@@ -31,8 +31,8 @@ class Calculator extends Component{
             doorsParam: [
                 
             ],
-            choosenRoolParam: '1.06 x 10м',
-            choosenRapport: '0',
+            choosenRollParam: [1.06, 10],
+            choosenRapport: [0],
             roomLength: 6.5,
             roomWidth: 6.5,
             roomHeigth: 6.5,
@@ -48,9 +48,9 @@ class Calculator extends Component{
         this.setState((prevState) => ({
             [prop]: prevState[prop].map(item => ({
                 ...item,
-                isChoosen: item.param === param
+                isChoosen: item.param.toString() === param.toString()
             })),
-            [`choosen${prop}`]: param,
+            [`choosen${prop.charAt(0).toUpperCase() + prop.slice(1)}`]: param,
         }));
     }
 
@@ -116,7 +116,7 @@ class Calculator extends Component{
                         </div>
                     </div>
 
-                    <div className={styles.selectionContainer}>
+                    <div className={styles.chooseParametrContainer}>
                         <div className={styles.section}>
                             <h2 className={styles.sectionTitle}>Парметры рулона</h2>
                             <ChooseParametr 

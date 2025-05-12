@@ -8,6 +8,7 @@
     flex-direction: column;
     gap: 25px;
     position: relative;
+    box-sizing: border-box;
 }
 
 .main{
@@ -23,7 +24,7 @@
     align-items: center;
 }
 
-.sectionTitle{
+.title{
     font-family: 'Inter';
     font-weight: 600;
     font-size: 24px;
@@ -57,7 +58,7 @@ hr{
     opacity: 20%;
 }
 
-.selectionContainer{
+.chooseParametrContainer{
     display: flex;
     flex-direction: column;
     row-gap: 42px;      
@@ -66,6 +67,7 @@ hr{
 .inputContainer{
     display: flex;
     flex-direction: column;
+    gap: 16px;
 }
 
 .addedParamContainer{
@@ -77,7 +79,12 @@ hr{
 }
 
 @media (min-width: 768px) { 
-    .selectionContainer{
+    .wrapper{
+        max-width: 990px;
+        padding: 58px 80px 58px 80px;
+    }
+
+    .chooseParametrContainer{
         flex-direction: row;
         justify-content: space-between;
     }

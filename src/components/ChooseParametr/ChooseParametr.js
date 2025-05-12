@@ -1,7 +1,10 @@
 import styles from './ChooseParametr.module.css';
 
+// interface ChooseParametrItemProps {
+//     name: string;
+// }
 
-function ChooseParametrItem({children, name, id, onChange, isChoosen}){
+function ChooseParametrItem({children, name, id, onChange, isChoosen, value}){
     
     return(
         < >
@@ -12,7 +15,7 @@ function ChooseParametrItem({children, name, id, onChange, isChoosen}){
                 className={styles.radio}
                 onChange={onChange}
                 checked={isChoosen} 
-                value={children}
+                value={value}
             />
             <label htmlFor={id} className={styles.radioLabel}> {children} </label>
         </>
@@ -27,7 +30,6 @@ function formatParam(param){
       result += ' x ';  // Разделитель между элементами
     }
     result += (param[i] === 0) ? '0' : `${param[i]}м`;
-    console.log(result);
   }
   return result;
 }
@@ -35,7 +37,7 @@ function formatParam(param){
 function ChooseParametr({dataArray, name, onSelect}){
     const handleRadioChange = (e) => {
         if(onSelect){
-            onSelect(e.target.value)
+            onSelect(e.target.value.split(',').map(parseFloat))
         }
     };
 
@@ -49,6 +51,7 @@ function ChooseParametr({dataArray, name, onSelect}){
                 id={id}
                 isChoosen={item.isChoosen}
                 onChange={handleRadioChange}
+                value={item.param}
             > 
                 {formatParam(item.param)} 
             </ChooseParametrItem>

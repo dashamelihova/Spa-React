@@ -7,12 +7,18 @@ class InputParametr extends Component{
     constructor(props){
         super(props);
         this.state ={
-            param: ''
+            param: '' 
         };
     }
 
-    onUpdateInputParam = (e) =>{
-        const param = e.target.value || this.props.startParam;
+    onGetInputParam = (e) =>{
+        const param = e.target.value ;
+        // if (param){|| this.props.startParam
+        //     this.setState({param});
+        // }
+        // else{
+        //     this.setState({param : this.props.startParam});
+        // }
         this.setState({param});
         this.props.onUpdateInputParam(param);
     }
@@ -30,7 +36,7 @@ class InputParametr extends Component{
                     type="text" 
                     placeholder={startParam} 
                     id={name}
-                    onChange={this.onUpdateInputParam}
+                    onChange={this.onGetdateInputParam}
                     value={param}
                 />
             </div>
