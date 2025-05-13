@@ -15,12 +15,6 @@ const InputParametr: React.FC<InputParametrProps> = ({ title, startParam, name, 
 
     const onGetdateInputParam = (e: ChangeEvent<HTMLInputElement>) =>{
         const newParam = e.target.value ;
-        // if (param){|| this.props.startParam
-        //     this.setState({param});
-        // }
-        // else{
-        //     this.setState({param : this.props.startParam});
-        // }
         setParam(newParam);
         onUpdateInputParam(newParam);
     };
@@ -45,6 +39,7 @@ const InputParametr: React.FC<InputParametrProps> = ({ title, startParam, name, 
                 id={name}
                 onChange={onGetdateInputParam}
                 value={param}
+                // name={name}
             />
         </div>
     );

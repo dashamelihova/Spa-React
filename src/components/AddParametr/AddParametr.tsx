@@ -1,7 +1,14 @@
+import React, { ChangeEvent } from 'react';
+
 import styles from './AddParametr.module.css';
 import icon from '../../assets/artboard.svg';
 
-function AddParametr({text, addItem}){
+interface AddParametrProps{
+    text: string;
+    addItem: () => void;
+}
+
+const AddParametr: React.FC<AddParametrProps> =({text, addItem}) => {
 
     return(
         <div className={styles.addParametrContainer}>

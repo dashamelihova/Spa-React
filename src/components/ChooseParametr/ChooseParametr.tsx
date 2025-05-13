@@ -1,10 +1,17 @@
+import React, { ChangeEvent } from 'react';
+
 import styles from './ChooseParametr.module.css';
 
-// interface ChooseParametrItemProps {
-//     name: string;
-// }
+interface ChooseParametrItemProps {
+    children: React.ReactNode;
+    name: string;
+    id: string;
+    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    isChoosen: boolean;
+    value: number[];
+}
 
-function ChooseParametrItem({children, name, id, onChange, isChoosen, value}){
+const ChooseParametrItem: React.FC<ChooseParametrItemProps>=({children, name, id, onChange, isChoosen, value}) => {
     
     return(
         < >
@@ -15,7 +22,7 @@ function ChooseParametrItem({children, name, id, onChange, isChoosen, value}){
                 className={styles.radio}
                 onChange={onChange}
                 checked={isChoosen} 
-                value={value}
+                value={value.toString()}
             />
             <label htmlFor={id} className={styles.radioLabel}> {children} </label>
         </>
@@ -23,7 +30,7 @@ function ChooseParametrItem({children, name, id, onChange, isChoosen, value}){
 }
 
 
-function formatParam(param){
+function formatParam(param: number[]):  string{
   let result = '';
   for (let i = 0; i < param.length; i++) {
     if (i > 0) {
@@ -34,15 +41,21 @@ function formatParam(param){
   return result;
 }
 
-function ChooseParametr({dataArray, name, onSelect}){
-    const handleRadioChange = (e) => {
+interface chooseParametrProps{
+    dataArray: {param: number[], isChoosen: boolean}[];
+    name: string;
+    onSelect: (param: number[]) => void;
+}
+
+const ChooseParametr: React.FC<chooseParametrProps> = ({dataArray, name, onSelect}) => {
+    const handleRadioChange = (e: ChangeEvent<HTMLInputElement>) => {
         if(onSelect){
             onSelect(e.target.value.split(',').map(parseFloat))
         }
     };
 
     //let id = 0;
-    const elements = dataArray.map((item, index) => {
+    const elements = dataArray.map((item: {param: number[], isChoosen: boolean}, index: number) => {
         const id = `${name}-${index}`
         return(
             <ChooseParametrItem 

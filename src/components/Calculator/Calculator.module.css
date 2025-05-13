@@ -44,8 +44,8 @@
     height: 24px;
     padding: 4px;
     box-sizing: border-box;
-    right: 28px;
-    top: 22px;
+    right: 36px;
+    top: 36px;
     cursor: pointer;
 }
 
@@ -61,7 +61,8 @@ hr{
 .chooseParametrContainer{
     display: flex;
     flex-direction: column;
-    row-gap: 42px;      
+    row-gap: 42px;
+    column-gap: 16px;      
 }
 
 .inputContainer{

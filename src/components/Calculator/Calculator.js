@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import React from 'react';
 
 import InputParametr from '../InputParametr/InputParametr';
 import Button from '../Button/Button';
@@ -39,6 +40,24 @@ class Calculator extends Component{
         };
         this.maxId = 0;
     }
+    // }
+
+    // const [rollParam, setRollParam] = React.useState([
+    //     {param: [1.06, 10], isChoosen: true},
+    //     {param: [1.06, 25], isChoosen: false},
+    // ]);
+    // const [rapport, setRapport] = React.useState([
+    //     {param: [0], isChoosen: true},
+    //     {param: [0.32], isChoosen: false},
+    //     {param: [0.64], isChoosen: false},
+    // ]);
+    // const [windowsParam, setWindowsParam] = React.useState([]);
+    // const [doorsParam, setDoorsParam] = React.useState([]);
+    // const [choosenRollParam, setChoosenRollParam] = React.useState([1.06, 10]);
+    // const [choosenRapport, setChoosenRapport] = React.useState([0]);
+    // const [roomLength, setRoomLength] = React.useState(6.5);
+    // const [roomWidth, setRoomWidth] = React.useState(6.5);
+    // const [roomHeight, setRoomHeight] = React.useState(6.5);
 
     onUpdateInputParam = (param, prop) =>{
         this.setState({[prop]: param});
@@ -76,6 +95,15 @@ class Calculator extends Component{
         })
     }
 
+    getFormInfo = () => {
+        let form = document.getElementById('Form');
+        let data = new FormData(form);
+
+        for (const entry of data.entries()) {
+            console.log(`${entry[0]}: ${entry[1]}`);
+          }
+    }
+
     render(){
         const {
             rollParam, 
@@ -89,99 +117,100 @@ class Calculator extends Component{
             windowsParam,
             doorsParam
         } = this.state;
-        return(
-            <div className={styles.wrapper}>
-                <div className={styles.main}>
+    
+    return(
+        <form className={styles.wrapper} id="Form" action="#" method="get">
+            <div className={styles.main}>
 
-                    <img className={styles.closeBtn} src={closeBtn} alt="Close Button" />
+                <img className={styles.closeBtn} src={closeBtn} alt="Close Button" />
 
-                    <div className={styles.section}>
-                        <h2 className={styles.sectionTitle}>Параметры комнаты</h2>
-                        <div className={styles.inputContainer}>
-                            <InputParametr 
-                                title={'Длина м'} 
-                                startParam={6.5} 
-                                name={'lengthM'}
-                                onUpdateInputParam={(param) => this.onUpdateInputParam(param, 'roomLength')}/>
-                            <InputParametr 
-                                title={'Ширина м'} 
-                                startParam={6.5} 
-                                name={'widthM'}
-                                onUpdateInputParam={(param) => this.onUpdateInputParam(param, 'roomWidth')}/>
-                            <InputParametr 
-                                title={'Высота м'} 
-                                startParam={6.5} 
-                                name={'heightM'}
-                                onUpdateInputParam={(param) => this.onUpdateInputParam(param, 'roomHeigth')}/>
-                        </div>
+                <div className={styles.section}>
+                    <h2 className={styles.sectionTitle}>Параметры комнаты</h2>
+                    <div className={styles.inputContainer}>
+                        <InputParametr 
+                            title={'Длина м'} 
+                            startParam={6.5} 
+                            name={'lengthM'}
+                            onUpdateInputParam={(param) => this.onUpdateInputParam(param, 'roomLength')}/>
+                        <InputParametr 
+                            title={'Ширина м'} 
+                            startParam={6.5} 
+                            name={'widthM'}
+                            onUpdateInputParam={(param) => this.onUpdateInputParam(param, 'roomWidth')}/>
+                        <InputParametr 
+                            title={'Высота м'} 
+                            startParam={6.5} 
+                            name={'heightM'}
+                            onUpdateInputParam={(param) => this.onUpdateInputParam(param, 'roomHeigth')}/>
                     </div>
-
-                    <div className={styles.chooseParametrContainer}>
-                        <div className={styles.section}>
-                            <h2 className={styles.sectionTitle}>Парметры рулона</h2>
-                            <ChooseParametr 
-                                dataArray={rollParam} 
-                                name="rollParam" 
-                                onSelect={(param) => this.handleParamSelect(param, "rollParam" )}
-                                />
-                        </div>
-
-                        <div className={styles.section}>
-                            <h2 className={styles.sectionTitle}>Раппорт</h2>
-                            <ChooseParametr 
-                                dataArray={rapport} 
-                                name="rapport"
-                                onSelect={(param) => this.handleParamSelect(param, "rapport" )}
-                                />
-                        </div>
-                    </div>
-
-                    <div className={styles.section}>
-                        <h2 className={styles.sectionTitle}>Параметры окон</h2>
-                        <div className={styles.addedParamContainer}>
-                            <ListAddedParametr
-                                title='Окно'
-                                name='windowsParam'
-                                data={windowsParam} 
-                                onDelete={(id) => this.deleteItem(id, 'windowsParam')}
-                                onUpdateInputParam={this.onUpdateInputParam}
-                            />
-                            <AddParametr 
-                                text='Добавить окно'
-                                addItem={() => this.addItem('windowsParam')}
-                            />
-                        </div>
-                        
-                    </div>
-
-                    <div className={styles.section}>
-                        <h2 className={styles.sectionTitle}>Параметры дверей</h2>
-                        <div className={styles.addedParamContainer}>
-                            <ListAddedParametr
-                                title='Дверь' 
-                                name='doorsParam'
-                                data={doorsParam} 
-                                onDelete={(id) => this.deleteItem(id, 'doorsParam')}
-                                onUpdateInputParam={this.onUpdateInputParam}
-                            />
-                            <AddParametr 
-                                text='Добавить дверь' 
-                                addItem={() => this.addItem('doorsParam')} 
-                                />
-                        </div>   
-                    </div>
-                    <hr />
                 </div>
-            
-                <div className={styles.footer}>
 
-                    {/* <Button>Рассчитать материалы</Button> */}
+                <div className={styles.chooseParametrContainer}>
+                    <div className={styles.section}>
+                        <h2 className={styles.sectionTitle}>Парметры рулона</h2>
+                        <ChooseParametr 
+                            dataArray={rollParam} 
+                            name="rollParam" 
+                            onSelect={(param) => this.handleParamSelect(param, "rollParam" )}
+                            />
+                    </div>
 
-                    <Results/>
+                    <div className={styles.section}>
+                        <h2 className={styles.sectionTitle}>Раппорт</h2>
+                        <ChooseParametr 
+                            dataArray={rapport} 
+                            name="rapport"
+                            onSelect={(param) => this.handleParamSelect(param, "rapport" )}
+                            />
+                    </div>
                 </div>
+
+                <div className={styles.section}>
+                    <h2 className={styles.sectionTitle}>Параметры окон</h2>
+                    <div className={styles.addedParamContainer}>
+                        <ListAddedParametr
+                            title='Окно'
+                            name='windowsParam'
+                            data={windowsParam} 
+                            onDelete={(id) => this.deleteItem(id, 'windowsParam')}
+                            onUpdateInputParam={this.onUpdateInputParam}
+                        />
+                        <AddParametr 
+                            text='Добавить окно'
+                            addItem={() => this.addItem('windowsParam')}
+                        />
+                    </div>
+                    
+                </div>
+
+                <div className={styles.section}>
+                    <h2 className={styles.sectionTitle}>Параметры дверей</h2>
+                    <div className={styles.addedParamContainer}>
+                        <ListAddedParametr
+                            title='Дверь' 
+                            name='doorsParam'
+                            data={doorsParam} 
+                            onDelete={(id) => this.deleteItem(id, 'doorsParam')}
+                            onUpdateInputParam={this.onUpdateInputParam}
+                        />
+                        <AddParametr 
+                            text='Добавить дверь' 
+                            addItem={() => this.addItem('doorsParam')} 
+                            />
+                    </div>   
+                </div>
+                <hr />
             </div>
-        );
-    }
+        
+            <div className={styles.footer}>
+
+                <Button getFormInfo={this.getFormInfo}>Рассчитать материалы</Button>
+
+                {/* <Results/> */}
+            </div>
+        </form>
+    );
+    };
     
 }
 
