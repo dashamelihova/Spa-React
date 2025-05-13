@@ -1,16 +1,28 @@
-import { Component } from 'react'
+import React, { Component } from 'react'
 import styles from './Results.module.css'
 
-class Results extends Component{
-    constructor(props){
-        super(props);
-        //room p
-    }
+interface ResultsProps{
+    roomLength: number;
+    roomWidth: number;
+    roomHeight: number;
+    windowsParam: {height: number, width: number, id: number}[];
+    doorsParam: {height: number, width: number, id: number}[];
+    rollParam: number[];
+    rapport: number[];
+}
+
+class Results extends Component<ResultsProps>{
+
 
     render(){
-        const countRoll = 57;
-        const countWallpaper = 604.2;
-        const pastingArea = 1800
+        const {roomLength, roomWidth, roomHeight, windowsParam, doorsParam, rollParam, rapport} = this.props;
+        // Пример расчётов (замени на реальную логику)
+        const countRoll = Math.ceil((roomLength * roomWidth * roomHeight) / (rollParam[0] * rollParam[1]));
+        const countWallpaper = roomLength * roomWidth * 2 + roomLength * roomHeight * 2 + roomWidth * roomHeight * 2;
+        const pastingArea =
+            countWallpaper -
+            windowsParam.reduce((sum, win) => sum + win.height * win.width, 0) -
+            doorsParam.reduce((sum, door) => sum + door.height * door.width, 0);
         return(
             <div className={styles.wrapper}>
                 <div className={styles.header}>
@@ -41,4 +53,4 @@ class Results extends Component{
     }
 } 
 
-export default Results
+export default Results;

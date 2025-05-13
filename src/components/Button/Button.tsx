@@ -1,10 +1,15 @@
+import React from "react";
+
 import styles from "./Button.module.css";
 import icon from "../../assets/magic-wand.svg";
 
-function Button({children, getFormInfo}){
-    
+interface ButtomProps{
+    children: React.ReactNode;
+}
+
+const Button: React.FC<ButtomProps> = ({children}) => {
     return(
-        <button className={styles.button} type="submit" form="Form" onClick={getFormInfo}>
+        <button className={styles.button} type="submit" form="Form">
             <img src={icon} alt="Icon" />
             {children}
         </button>

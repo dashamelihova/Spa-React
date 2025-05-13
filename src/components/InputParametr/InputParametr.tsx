@@ -6,27 +6,12 @@ interface InputParametrProps{
     title: string;
     startParam: number;
     name: string;
-    onUpdateInputParam: (param: string) => void;
 }
 
-const InputParametr: React.FC<InputParametrProps> = ({ title, startParam, name, onUpdateInputParam}) => {
+const InputParametr: React.FC<InputParametrProps> = ({ title, startParam, name}) => {
 
-    const [param, setParam] = React.useState<string>('');
+    //const [param, setParam] = React.useState<string>('');
 
-    const onGetdateInputParam = (e: ChangeEvent<HTMLInputElement>) =>{
-        const newParam = e.target.value ;
-        setParam(newParam);
-        onUpdateInputParam(newParam);
-    };
-
-    
-    // const onGetInputParam = (e: ChangeEvent<HTMLInputElement>) => {
-    //     const newParam = e.target.value;
-    //     if (newParam === '' || Number(newParam) >= 0) {
-    //         setParam(newParam);
-    //         onUpdateInputParam(newParam);
-    //     }
-    // };
     return(
         <div className={styles.inputParameter}>
             <label className={styles.inputParameterLabel} htmlFor={name}>
@@ -37,9 +22,11 @@ const InputParametr: React.FC<InputParametrProps> = ({ title, startParam, name, 
                 type="number" 
                 placeholder={startParam.toString()} 
                 id={name}
-                onChange={onGetdateInputParam}
-                value={param}
-                // name={name}
+                
+                //defaultValue={startParam}
+                //value={param}
+                name={name}
+                min="0"
             />
         </div>
     );

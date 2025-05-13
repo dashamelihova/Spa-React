@@ -3,15 +3,15 @@ import React, { ChangeEvent } from 'react';
 import styles from './ChooseParametr.module.css';
 
 interface ChooseParametrItemProps {
-    children: React.ReactNode;
+    children: string;
     name: string;
     id: string;
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-    isChoosen: boolean;
+    isChosen: boolean;
     value: number[];
 }
 
-const ChooseParametrItem: React.FC<ChooseParametrItemProps>=({children, name, id, onChange, isChoosen, value}) => {
+const ChooseParametrItem: React.FC<ChooseParametrItemProps>=({children, name, id, onChange, isChosen, value}) => {
     
     return(
         < >
@@ -21,7 +21,7 @@ const ChooseParametrItem: React.FC<ChooseParametrItemProps>=({children, name, id
                 name={name} 
                 className={styles.radio}
                 onChange={onChange}
-                checked={isChoosen} 
+                checked={isChosen} 
                 value={value.toString()}
             />
             <label htmlFor={id} className={styles.radioLabel}> {children} </label>
@@ -31,38 +31,29 @@ const ChooseParametrItem: React.FC<ChooseParametrItemProps>=({children, name, id
 
 
 function formatParam(param: number[]):  string{
-  let result = '';
-  for (let i = 0; i < param.length; i++) {
-    if (i > 0) {
-      result += ' x ';  // Разделитель между элементами
-    }
-    result += (param[i] === 0) ? '0' : `${param[i]}м`;
-  }
-  return result;
+
+  return param.map(num => (num === 0 ? '0' : `${num}м`)).join(' x ');
 }
 
-interface chooseParametrProps{
-    dataArray: {param: number[], isChoosen: boolean}[];
+interface ChooseParametrProps{
+    dataArray: {param: number[], isChosen: boolean}[];
     name: string;
     onSelect: (param: number[]) => void;
 }
 
-const ChooseParametr: React.FC<chooseParametrProps> = ({dataArray, name, onSelect}) => {
+const ChooseParametr: React.FC<ChooseParametrProps> = ({dataArray, name, onSelect}) => {
     const handleRadioChange = (e: ChangeEvent<HTMLInputElement>) => {
-        if(onSelect){
-            onSelect(e.target.value.split(',').map(parseFloat))
-        }
+        onSelect(e.target.value.split(',').map(parseFloat))
     };
 
-    //let id = 0;
-    const elements = dataArray.map((item: {param: number[], isChoosen: boolean}, index: number) => {
+    const elements = dataArray.map((item, index) => {
         const id = `${name}-${index}`
         return(
             <ChooseParametrItem 
                 key={id} 
                 name={name} 
                 id={id}
-                isChoosen={item.isChoosen}
+                isChosen={item.isChosen}
                 onChange={handleRadioChange}
                 value={item.param}
             > 
