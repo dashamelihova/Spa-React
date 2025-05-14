@@ -22,7 +22,7 @@ const InputParametr: React.FC<InputParametrProps> = ({ title, startParam, name})
                 type="number" 
                 placeholder={startParam.toString()} 
                 id={name}
-                
+                step="any"
                 //defaultValue={startParam}
                 //value={param}
                 name={name}

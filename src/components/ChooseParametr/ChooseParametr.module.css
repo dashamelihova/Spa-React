@@ -6,6 +6,7 @@
 
 .radio[type=radio]{
     display: none;
+    
 }
 
 .radio[type=radio] + .radioLabel{
@@ -15,6 +16,7 @@
     background-color: rgba(82, 110, 255, 1);
     opacity: 20%;
     color: white;
+    cursor: pointer;
 }
 
 .radio[type=radio]:checked + .radioLabel{
@@ -24,6 +26,5 @@
 @media (min-width: 768px) { 
     .radio[type=radio] + .radioLabel{
         padding: 16px 32px;
-        
     }
 }

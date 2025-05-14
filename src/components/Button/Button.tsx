@@ -5,6 +5,9 @@ import icon from "../../assets/magic-wand.svg";
 
 interface ButtomProps{
     children: React.ReactNode;
+    //type
+    //form
+    //function onClick
 }
 
 const Button: React.FC<ButtomProps> = ({children}) => {

@@ -6,13 +6,16 @@ interface ChooseParametrItemProps {
     children: string;
     name: string;
     id: string;
-    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
     isChosen: boolean;
     value: number[];
 }
 
-const ChooseParametrItem: React.FC<ChooseParametrItemProps>=({children, name, id, onChange, isChosen, value}) => {
-    
+interface ChooseParametrProps{
+    dataArray: {param: number[]}[];
+    name: string;
+}
+
+const ChooseParametrItem: React.FC<ChooseParametrItemProps>=({children, name, id, isChosen, value}) => {
     return(
         < >
             <input 
@@ -20,8 +23,7 @@ const ChooseParametrItem: React.FC<ChooseParametrItemProps>=({children, name, id
                 id={id} 
                 name={name} 
                 className={styles.radio}
-                onChange={onChange}
-                checked={isChosen} 
+                defaultChecked={isChosen} 
                 value={value.toString()}
             />
             <label htmlFor={id} className={styles.radioLabel}> {children} </label>
@@ -29,32 +31,20 @@ const ChooseParametrItem: React.FC<ChooseParametrItemProps>=({children, name, id
     );
 }
 
-
-function formatParam(param: number[]):  string{
-
-  return param.map(num => (num === 0 ? '0' : `${num}м`)).join(' x ');
-}
-
-interface ChooseParametrProps{
-    dataArray: {param: number[], isChosen: boolean}[];
-    name: string;
-    onSelect: (param: number[]) => void;
-}
-
-const ChooseParametr: React.FC<ChooseParametrProps> = ({dataArray, name, onSelect}) => {
-    const handleRadioChange = (e: ChangeEvent<HTMLInputElement>) => {
-        onSelect(e.target.value.split(',').map(parseFloat))
-    };
+const ChooseParametr: React.FC<ChooseParametrProps> = ({dataArray, name}) => {
+    const formatParam = (param: number[]):  string => {
+        return param.map(num => (num === 0 ? '0' : `${num}м`)).join(' x ');
+    }
 
     const elements = dataArray.map((item, index) => {
         const id = `${name}-${index}`
+        const isChosen = index === 0 ? true : false;
         return(
             <ChooseParametrItem 
                 key={id} 
                 name={name} 
                 id={id}
-                isChosen={item.isChosen}
-                onChange={handleRadioChange}
+                isChosen={isChosen}
                 value={item.param}
             > 
                 {formatParam(item.param)} 

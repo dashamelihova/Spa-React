@@ -40,12 +40,12 @@
 
 .closeBtn{
     position: absolute;
-    width: 24px;
-    height: 24px;
-    padding: 4px;
+    width: 36px;
+    height: 36px;
+    padding: 10px;
     box-sizing: border-box;
-    right: 36px;
-    top: 36px;
+    right: 20px;
+    top: 20px;
     cursor: pointer;
 }
 

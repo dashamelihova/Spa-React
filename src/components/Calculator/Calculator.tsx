@@ -11,8 +11,7 @@ import Results from '../Results/Results';
 import styles from './Calculator.module.css';
 
 interface ParamItem{
-  param: number[]; 
-  isChosen: boolean;
+  param: number[];
 }
 
 interface ParamData {
@@ -35,39 +34,27 @@ interface CalculatorState {
 }
 
 const Calculator: React.FC = () => {
-    const [state, setState] = useState({
+    const [state, setState] = useState<CalculatorState>({
         rollParam: [
-            { param: [1.06, 10], isChosen: true },
-            { param: [1.06, 25], isChosen: false },
+            { param: [1.06, 10] },
+            { param: [1.06, 25] },
         ],
         rapport: [
-            { param: [0], isChosen: true },
-            { param: [0.32], isChosen: false },
-            { param: [0.64], isChosen: false },
+            { param: [0] },
+            { param: [0.32] },
+            { param: [0.64] },
         ],
         windowsParam: [] as ParamData[],
-        doorsParam: [] as ParamData[],//as ParamData[]
-        chosenRollParam: [1.06, 10],
-        chosenRapport: [0],
+        doorsParam: [] as ParamData[],
+        chosenRollParam: [],
+        chosenRapport: [],
         roomLength: 6.5,
         roomWidth: 6.5,
         roomHeight: 6.5,
         showResults: false,
     });
 
-    const [maxId, setMaxId] = useState(0);
-
-    const handleParamSelect = (param: number[], prop: "rollParam" | "rapport") => {
-        if (prop !== "rollParam" && prop !== "rapport") return;
-        setState((prevState) => ({
-            ...prevState,
-            [prop]: prevState[prop].map((item: ParamItem) => ({
-                ...item,
-                isChoosen: item.param.toString() === param.toString()
-            })),
-            [`chosen${prop.charAt(0).toUpperCase() + prop.slice(1)}`]: param,
-        }));
-    }
+    const [maxId, setMaxId] = useState<number>(0);
 
     const addItem = (prop: "windowsParam" | "doorsParam") => {
         const newItem = {
@@ -174,7 +161,7 @@ const Calculator: React.FC = () => {
                         <ChooseParametr 
                             dataArray={state.rollParam} 
                             name="rollParam" 
-                            onSelect={(param) => handleParamSelect(param, "rollParam" )}
+                            // onSelect={(param) => handleParamSelect(param, "rollParam" )}
                             />
                     </div>
 
@@ -183,7 +170,7 @@ const Calculator: React.FC = () => {
                         <ChooseParametr 
                             dataArray={state.rapport} 
                             name="rapport"
-                            onSelect={(param) => handleParamSelect(param, "rapport" )}
+                            // onSelect={(param) => handleParamSelect(param, "rapport" )}
                             />
                     </div>
                 </div>
