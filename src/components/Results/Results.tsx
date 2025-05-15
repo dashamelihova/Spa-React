@@ -9,11 +9,14 @@ interface ResultsProps{
     doorsParam: {height: number, width: number, id: number}[];
     rollParam: number[];
     rapport: number[];
+    onReset: () => void
 }
 
-const Results: React.FC<ResultsProps> = ({roomLength, roomWidth, roomHeight, windowsParam, doorsParam, rollParam, rapport}) => {
+const Results: React.FC<ResultsProps> = ({roomLength, roomWidth, roomHeight, windowsParam, doorsParam, rollParam, rapport, onReset}) => {
     const windowsArea = windowsParam.reduce((sum, win) => sum + win.height * win.width, 0);
     const doorsArea = doorsParam.reduce((sum, door) => sum + door.height * door.width, 0);
+    // 1. Расчет периметра комнаты
+    const roomPerimeter = 2 * (roomLength + roomWidth);
     // Пример расчётов 
     const pastingArea = Math.ceil(
         (2 * roomHeight * (roomLength + roomWidth) -
@@ -21,30 +24,13 @@ const Results: React.FC<ResultsProps> = ({roomLength, roomWidth, roomHeight, win
         doorsArea) * 
         100
     ) / 100; //для округления
+    const LengthPolosWall = roomHeight + rapport[0];
+    const counPolos = Math.ceil(roomPerimeter / rollParam[0]); //Math.ceil
+    const countPolosForWoindow = windowsParam.reduce((sum, win) => sum + win.width / rollParam[0] * win.height, 0) ;
+    const countPolosForDoor = doorsParam.reduce((sum, door) => sum + door.width / rollParam[0] * door.height, 0) ;
+    const countWallpaper = Math.ceil((counPolos * LengthPolosWall - countPolosForDoor - countPolosForWoindow)*100)/100;
 
-    const stripLength = roomHeight + rapport[0]; // 4. Длина полотна с учетом раппорта
-    const pRoom =  2 * (roomLength + roomWidth);
-    // 6. Количество полотен на стену (с учетом ширины рулона)
-    const stripsNeededPerWall = pRoom / rollParam[0] - windowsArea / rollParam[0] - doorsArea / rollParam[0];
-    
-    // 5. Количество полотен из рулона
-    const stripsPerRoll = rollParam[1] / roomHeight;
-    const wallArea = 2 * roomHeight * (roomLength + roomWidth);
-    const res = Math.ceil(stripsNeededPerWall / stripsPerRoll);
-    
-
-    //(пока без учета окон и дверей)
-    const countRoll = 
-        Math.ceil(
-            ((2 * (roomLength + roomWidth)) / rollParam[0]) / (rollParam[1] / (roomHeight + rapport[0]))
-        ); 
-
-    //(пока без учета окон и дверей)
-    const countWallpaper = Math.ceil(
-        ((2 * (roomLength + roomWidth)) / rollParam[0]) * roomHeight * 100
-    ) / 100;
-
-    
+    const countRoll = Math.ceil(countWallpaper / rollParam[1]);
     return(
         <div className={styles.wrapper}>
             <div className={styles.header}>
@@ -67,8 +53,8 @@ const Results: React.FC<ResultsProps> = ({roomLength, roomWidth, roomHeight, win
             
 
             <div className={styles.footer}>
-                <button className={styles.btn} type='button'>Сбросить параметры</button>
-                <button className={styles.btn} type='button'>Перейти в каталог</button> 
+                <button className={styles.btn} type='button' onClick={onReset}>Сбросить параметры</button>
+                <button className={`${styles.btn} ${styles.btnGreen}`} type='button'>Перейти в каталог</button> 
             </div>
         </div>
     );

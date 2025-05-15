@@ -9,8 +9,10 @@ function App(){
 
     return (
         <div className={styles.app}>
-            <Calculator/>
-            {/* {isStartScreen ? <StartScreen/>) : <Calculator/>} */}
+            {/* <Calculator/> */}
+            {isStartScreen ? 
+                <StartScreen onClick={() => setIsStartScreen(false)}/> : 
+                <Calculator onClick={() => setIsStartScreen(true)}/>}
         </div>
     )
 }

@@ -33,7 +33,11 @@ interface CalculatorState {
   showResults: boolean;
 }
 
-const Calculator: React.FC = () => {
+interface CalculatorProps{
+    onClick: () => void;
+}
+
+const Calculator: React.FC<CalculatorProps> = ({onClick}) => {
     const [state, setState] = useState<CalculatorState>({
         rollParam: [
             { param: [1.06, 10] },
@@ -127,12 +131,18 @@ const Calculator: React.FC = () => {
         }));
     }
 
+     const resetForm = () => {
+        setState((prevState) => ({
+            ...prevState,
+            showResults: false,
+        }));
+     }
     
     return(
         <form className={styles.wrapper} id="Form" onSubmit={getFormInfo}>
             <div className={styles.main}>
 
-                <img className={styles.closeBtn} src={closeBtn} alt="Close Button" />
+                <img className={styles.closeBtn} src={closeBtn} alt="Close Button" onClick={onClick}/>
 
                 <div className={styles.section}>
                     <h2 className={styles.sectionTitle}>Параметры комнаты</h2>
@@ -221,10 +231,10 @@ const Calculator: React.FC = () => {
                             doorsParam={state.doorsParam}
                             rollParam={state.chosenRollParam}
                             rapport={state.chosenRapport}
-                            //onReset={resetForm}
+                            onReset={resetForm}
                         />
                     ) : (
-                        <Button>Рассчитать материалы</Button>
+                        <Button type="submit" formName='Form' onClick={undefined}>Рассчитать материалы</Button>
                     )
                 }
                 

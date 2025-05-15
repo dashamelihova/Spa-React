@@ -40,7 +40,7 @@
 
 @media (min-width: 768px) { 
     .addParametrContainer{
-        width: 266px;
+        /* width: 266px; */
         height: 180px;
     }
 }

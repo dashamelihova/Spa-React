@@ -67,13 +67,10 @@
     line-height: 24px;
     font-family: 'Roboto';
     cursor: pointer;
-}
-
-.btn:first-child{
     color: rgba(82, 110, 255, 1);
 }
 
-.btn:last-child{
+.btnGreen{
     color: rgba(90, 205, 102, 1);
 }
 
