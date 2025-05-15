@@ -6,13 +6,14 @@ import icon from '../../assets/artboard.svg';
 interface AddParametrProps{
     text: string;
     addItem: () => void;
+    disabled?: boolean;
 }
 
-const AddParametr: React.FC<AddParametrProps> =({text, addItem}) => {
+const AddParametr: React.FC<AddParametrProps> =({text, addItem, disabled}) => {
 
     return(
         <div className={styles.addParametrContainer}>
-            <button className={styles.addParametrButton} onClick={addItem} type="button">
+            <button className={styles.addParametrButton} onClick={addItem} type="button" disabled={disabled}>
                 <img 
                     className={styles.addParametrButtonIcon} 
                     src={icon}

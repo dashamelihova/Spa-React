@@ -10,21 +10,21 @@ interface AddedParametrProps{
     title: string;
     data: {height: number, width: number, id: number};
     onDelete: () => void;
+    disabled?: boolean;
 }
 
-const AddedParametr: React.FC<AddedParametrProps> = ({name, title, data, onDelete}) => {
+const AddedParametr: React.FC<AddedParametrProps> = ({name, title, data, onDelete, disabled}) => {
     return (
         <div className={styles.addedParametrContainer}>
             <div className={styles.addedParametrHeader}>
                 <p className={styles.addedParametrLabel}> {title} </p>
-                {/* <button className={styles.addedParametrCloseButton} onClick={onDelete}> */}
+                <button className={styles.addedParametrCloseButton} disabled={disabled} onClick={onDelete}>
                     <img 
                         className={styles.addedParametrCloseButtonIcon} 
                         src={closeBtn} 
                         alt="Close Button" 
-                        onClick={onDelete}
                     />
-                {/* </button> */}
+                </button>
                 
             </div>
             
@@ -33,12 +33,14 @@ const AddedParametr: React.FC<AddedParametrProps> = ({name, title, data, onDelet
                     title={'Высота м'} 
                     startParam={0} 
                     name={`height-${name}`}
+                    disabled={disabled}
                 />
                     
                 <InputParametr 
                     title={'Ширина м'} 
                     startParam={0} 
                     name={`width-${name}`}
+                    disabled={disabled}
                 />
             </div>
             
@@ -51,9 +53,10 @@ interface ListAddedParametrProps{
     title: string;
     data: {height: number, width: number, id: number}[];
     onDelete: (id: number) => void;
+    disabled?: boolean;
 }
 
-const ListAddedParametr: React.FC<ListAddedParametrProps> = ({data, name, title, onDelete}) => {
+const ListAddedParametr: React.FC<ListAddedParametrProps> = ({data, name, title, onDelete, disabled}) => {
     const elements = data.map(item => {
         const id = item.id;
         const nameItem = `${name}-${id}`;
@@ -64,6 +67,7 @@ const ListAddedParametr: React.FC<ListAddedParametrProps> = ({data, name, title,
                 title={title} 
                 key={id}
                 onDelete={() => onDelete(id)}
+                disabled={disabled}
             />
         );
     })

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 import InputParametr from '../InputParametr/InputParametr';
 import Button from '../Button/Button';
@@ -38,27 +38,29 @@ interface CalculatorProps{
 }
 
 const Calculator: React.FC<CalculatorProps> = ({onClick}) => {
-    const [state, setState] = useState<CalculatorState>({
-        rollParam: [
-            { param: [1.06, 10] },
-            { param: [1.06, 25] },
-        ],
-        rapport: [
-            { param: [0] },
-            { param: [0.32] },
-            { param: [0.64] },
-        ],
-        windowsParam: [] as ParamData[],
-        doorsParam: [] as ParamData[],
-        chosenRollParam: [],
-        chosenRapport: [],
-        roomLength: 6.5,
-        roomWidth: 6.5,
-        roomHeight: 6.5,
-        showResults: false,
-    });
+    const initialState: CalculatorState = {
+    rollParam: [
+      { param: [1.06, 10] },
+      { param: [1.06, 25] },
+    ],
+    rapport: [
+      { param: [0] },
+      { param: [0.32] },
+      { param: [0.64] },
+    ],
+    windowsParam: [],
+    doorsParam: [],
+    chosenRollParam: [1.06, 10],
+    chosenRapport: [0],
+    roomLength: 6.5,
+    roomWidth: 6.5,
+    roomHeight: 6.5,
+    showResults: false,
+  };
+    const [state, setState] = useState<CalculatorState>(initialState);
 
     const [maxId, setMaxId] = useState<number>(0);
+    const formRef = useRef<HTMLFormElement>(null);
 
     const addItem = (prop: "windowsParam" | "doorsParam") => {
         const newItem = {
@@ -132,14 +134,15 @@ const Calculator: React.FC<CalculatorProps> = ({onClick}) => {
     }
 
      const resetForm = () => {
-        setState((prevState) => ({
-            ...prevState,
-            showResults: false,
-        }));
+        setState(initialState);
+        setMaxId(0);
+        if (formRef.current) {
+            formRef.current.reset();
+        }
      }
     
     return(
-        <form className={styles.wrapper} id="Form" onSubmit={getFormInfo}>
+        <form className={styles.wrapper} id="Form" onSubmit={getFormInfo} ref={formRef}>
             <div className={styles.main}>
 
                 <img className={styles.closeBtn} src={closeBtn} alt="Close Button" onClick={onClick}/>
@@ -151,16 +154,19 @@ const Calculator: React.FC<CalculatorProps> = ({onClick}) => {
                             title={'Длина м'} 
                             startParam={6.5} 
                             name={'lengthM'}
+                            disabled={state.showResults}
                         />
                         <InputParametr 
                             title={'Ширина м'} 
                             startParam={6.5} 
                             name={'widthM'}
+                            disabled={state.showResults}
                         />
                         <InputParametr 
                             title={'Высота м'} 
                             startParam={6.5} 
                             name={'heightM'}
+                            disabled={state.showResults}
                         />
                     </div>
                 </div>
@@ -171,7 +177,7 @@ const Calculator: React.FC<CalculatorProps> = ({onClick}) => {
                         <ChooseParametr 
                             dataArray={state.rollParam} 
                             name="rollParam" 
-                            // onSelect={(param) => handleParamSelect(param, "rollParam" )}
+                            disabled={state.showResults}
                             />
                     </div>
 
@@ -180,7 +186,7 @@ const Calculator: React.FC<CalculatorProps> = ({onClick}) => {
                         <ChooseParametr 
                             dataArray={state.rapport} 
                             name="rapport"
-                            // onSelect={(param) => handleParamSelect(param, "rapport" )}
+                            disabled={state.showResults}
                             />
                     </div>
                 </div>
@@ -193,10 +199,12 @@ const Calculator: React.FC<CalculatorProps> = ({onClick}) => {
                             name='windowsParam'
                             data={state.windowsParam} 
                             onDelete={(id) => deleteItem(id, 'windowsParam')}
+                            disabled={state.showResults}
                         />
                         <AddParametr 
                             text='Добавить окно'
                             addItem={() => addItem('windowsParam')}
+                            disabled={state.showResults}
                         />
                     </div>
                     
@@ -210,10 +218,12 @@ const Calculator: React.FC<CalculatorProps> = ({onClick}) => {
                             name='doorsParam'
                             data={state.doorsParam} 
                             onDelete={(id) => deleteItem(id, 'doorsParam')}
+                            disabled={state.showResults}
                         />
                         <AddParametr 
                             text='Добавить дверь' 
                             addItem={() => addItem('doorsParam')} 
+                            disabled={state.showResults}
                             />
                     </div>   
                 </div>
@@ -222,7 +232,7 @@ const Calculator: React.FC<CalculatorProps> = ({onClick}) => {
         
             <div className={styles.footer}>
                 {
-                    state.showResults ? (
+                    state.showResults ? 
                         <Results
                             roomLength={state.roomLength}
                             roomWidth={state.roomWidth}
@@ -233,9 +243,9 @@ const Calculator: React.FC<CalculatorProps> = ({onClick}) => {
                             rapport={state.chosenRapport}
                             onReset={resetForm}
                         />
-                    ) : (
+                        : 
                         <Button type="submit" formName='Form' onClick={undefined}>Рассчитать материалы</Button>
-                    )
+                    
                 }
                 
 

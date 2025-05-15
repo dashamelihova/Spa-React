@@ -6,9 +6,10 @@ interface InputParametrProps{
     title: string;
     startParam: number;
     name: string;
+    disabled?: boolean;
 }
 
-const InputParametr: React.FC<InputParametrProps> = ({ title, startParam, name}) => {
+const InputParametr: React.FC<InputParametrProps> = ({ title, startParam, name, disabled}) => {
 
     //const [param, setParam] = React.useState<string>('');
 
@@ -27,6 +28,7 @@ const InputParametr: React.FC<InputParametrProps> = ({ title, startParam, name})
                 //value={param}
                 name={name}
                 min="0"
+                disabled={disabled}
             />
         </div>
     );
