@@ -23,6 +23,10 @@
     opacity: 100%;
 }
 
+.radio[type=radio]:disabled + .radioLabel{
+    cursor: default;
+}
+
 @media (min-width: 768px) { 
     .radio[type=radio] + .radioLabel{
         padding: 16px 32px;

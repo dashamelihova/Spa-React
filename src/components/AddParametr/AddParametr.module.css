@@ -24,6 +24,11 @@
    opacity: 20%; 
 }
 
+.addParametrButton:disabled{
+    cursor: auto;
+    opacity: 100%;
+}
+
 .addParametrButtonIcon{
     width: 24px;
     height: 24px;

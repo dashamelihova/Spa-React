@@ -3,6 +3,7 @@
     flex-direction: column;
     gap: 8px;
     /* flex-grow: 1; */
+    flex: 1;
 }
 
 .inputParameterLabel{
@@ -10,6 +11,7 @@
     font-size: 16px;
     line-height: 24px;
     vertical-align: middle;
+    flex: 1;
 }
 
 .inputParameterInput{
@@ -43,6 +45,10 @@
 .inputParameterInput:focus{
     border-color: rgba(17, 17, 17, 0.64);
     color:rgba(17, 17, 17, 1);
+}
+
+.inputParameterInput:disabled{
+    background-color: white;
 }
 
 /* Дополнительно убираем псевдоэлементы спиннеров */

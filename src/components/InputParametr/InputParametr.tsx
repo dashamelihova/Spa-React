@@ -25,7 +25,6 @@ const InputParametr: React.FC<InputParametrProps> = ({ title, startParam, name, 
                 id={name}
                 step="any"
                 //defaultValue={startParam}
-                //value={param}
                 name={name}
                 min="0"
                 disabled={disabled}

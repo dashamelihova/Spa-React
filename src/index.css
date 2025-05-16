@@ -3,6 +3,7 @@ body {
   font-family: 'Roboto';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgba(245, 247, 249, 1);
 }
 
 code {
@@ -21,3 +22,7 @@ button{
 }
 
 input {outline:none;}
+input:-webkit-autofill,
+  input:-webkit-autofill:focus {
+    transition: background-color 0s 600000s, color 0s 600000s !important;
+  }

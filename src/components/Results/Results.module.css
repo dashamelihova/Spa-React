@@ -75,7 +75,11 @@
 }
 
 .btn:hover{
-    opacity: 20%;
+    color: rgba(82, 110, 255, 0.5);
+}
+
+.btnGreen:hover{
+    color: rgba(90, 205, 102, 0.5);
 }
 
 @media (min-width: 768px) { 

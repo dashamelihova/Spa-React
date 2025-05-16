@@ -18,16 +18,15 @@
 }
 
 .addedParametrCloseButtonIcon {
-    width: 24px;
-    height: 24px;
-    padding: 4px;
-    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    padding: 10px;
     box-sizing: border-box;
 }
 
-.addedParametrCloseButtonIcon:hover{
+/* .addedParametrCloseButtonIcon:hover{
     opacity: 20%;
-}
+} */
 
 .addedParametrLabel {
     font-weight: 500;
@@ -38,17 +37,32 @@
 
 .addedParametrInputContainer {
     width: 100%;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
     gap: 16px;
 }
 
-.addedParametrInputContainer  *{
+/* .addedParametrInputContainer *{
     flex: 1;
+} */
+
+.addedParametrCloseButton{
+    padding: 0;
+    background-color: white;
+    cursor: pointer;
+}
+
+.addedParametrCloseButton:hover{
+    opacity: 20%;
+}
+
+.addedParametrCloseButton:disabled{
+    cursor: auto;
+    opacity: 100%;
 }
 
 @media (min-width: 768px) { 
     .addedParametrContainer {
-        /* width: 266px; */
         height: 180px;
     }
 }

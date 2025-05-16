@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import InputParametr from '../InputParametr/InputParametr';
 import Button from '../Button/Button';
@@ -37,7 +38,8 @@ interface CalculatorProps{
     onClick: () => void;
 }
 
-const Calculator: React.FC<CalculatorProps> = ({onClick}) => {
+const Calculator: React.FC<CalculatorProps> = () => {
+    const navigate = useNavigate();
     const initialState: CalculatorState = {
     rollParam: [
       { param: [1.06, 10] },
@@ -84,40 +86,39 @@ const Calculator: React.FC<CalculatorProps> = ({onClick}) => {
     }
 
     const getFormInfo = (e: React.FormEvent<HTMLFormElement>) => {
+        function getFormData(name: string, value: any){
+            const getValue = formData.get(name);
+            if(!getValue){
+                formData.set(name, value);
+                return value;
+            }
+            return getValue;
+        }
         e.preventDefault(); // Предотвращаем обновление страницы
         const formData = new FormData(e.currentTarget);
+
+        
         // Собираем данные комнаты
-        const roomLength = parseFloat(formData.get("lengthM") as string) || 6.5;
-        const roomWidth = parseFloat(formData.get("widthM") as string) || 6.5;
-        const roomHeight = parseFloat(formData.get("heightM") as string) || 6.5;
+        const roomLength = parseFloat(getFormData("lengthM", 6.5) as string);
+        const roomWidth = parseFloat(getFormData("widthM", 6.5) as string);
+        const roomHeight = parseFloat(getFormData("heightM", 6.5) as string);
         // Собираем данные окон
         const windowsParam = state.windowsParam.map((item: ParamData) => ({
-            height: parseFloat(formData.get(`height-windowsParam-${item.id}`) as string) || 0,
-            width: parseFloat(formData.get(`width-windowsParam-${item.id}`) as string) || 0,
+            height: parseFloat(getFormData(`height-windowsParam-${item.id}`, 0) as string),
+            width: parseFloat(getFormData(`width-windowsParam-${item.id}`, 0) as string),
             id: item.id,
         }));
 
         // Собираем данные дверей
         const doorsParam = state.doorsParam.map((item: ParamData) => ({
-            height: parseFloat(formData.get(`height-doorsParam-${item.id}`) as string) || 0,
-            width: parseFloat(formData.get(`width-doorsParam-${item.id}`) as string) || 0,
+            height: parseFloat(getFormData(`height-doorsParam-${item.id}`, 0) as string),
+            width: parseFloat(getFormData(`width-doorsParam-${item.id}`, 0) as string),
             id: item.id,
         }));
 
         // Собираем раппорт и параметры рулона
         const rapport = (formData.get("rapport") as string).split(',').map(parseFloat);
         const rollParam = (formData.get("rollParam") as string).split(',').map(parseFloat);
-
-        // Логируем для проверки
-        console.log({
-            roomLength,
-            roomWidth,
-            roomHeight,
-            windowsParam,
-            doorsParam,
-            rapport,
-            rollParam,
-        });
 
         // Передаём данные в Results через state или props
         setState((prevState) => ({
@@ -145,7 +146,11 @@ const Calculator: React.FC<CalculatorProps> = ({onClick}) => {
         <form className={styles.wrapper} id="Form" onSubmit={getFormInfo} ref={formRef}>
             <div className={styles.main}>
 
-                <img className={styles.closeBtn} src={closeBtn} alt="Close Button" onClick={onClick}/>
+                <img className={styles.closeBtn} 
+                    src={closeBtn} 
+                    alt="Close Button" 
+                    onClick={() => navigate('/', {replace: false})}
+                />
 
                 <div className={styles.section}>
                     <h2 className={styles.sectionTitle}>Параметры комнаты</h2>

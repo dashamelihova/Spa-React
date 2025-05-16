@@ -27,8 +27,8 @@ const Results: React.FC<ResultsProps> = ({roomLength, roomWidth, roomHeight, win
     //оклеиваемый периметр
     const effectivePerimeter = roomPerimeter - windowsWidth - doorsWidth;
     //Количество полос
-    const stripCount = Math.ceil(effectivePerimeter / rollParam[0]);
-    //stripCount = ceil(roomPerimeter / rollParam[0])
+    //const stripCount = Math.ceil(effectivePerimeter / rollParam[0]);
+    const stripCount = Math.ceil(roomPerimeter / rollParam[0])
     
     //Длина одной полосы с учётом раппорта
     const stripLength = rapport[0] > 0 ? Math.ceil(roomHeight / rapport[0]) * rapport[0] : roomHeight;
