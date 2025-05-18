@@ -35,7 +35,7 @@ interface CalculatorState {
 }
 
 interface CalculatorProps{
-    onClick: () => void;
+
 }
 
 const Calculator: React.FC<CalculatorProps> = () => {
@@ -86,33 +86,24 @@ const Calculator: React.FC<CalculatorProps> = () => {
     }
 
     const getFormInfo = (e: React.FormEvent<HTMLFormElement>) => {
-        function getFormData(name: string, value: any){
-            const getValue = formData.get(name);
-            if(!getValue){
-                formData.set(name, value);
-                return value;
-            }
-            return getValue;
-        }
         e.preventDefault(); // Предотвращаем обновление страницы
         const formData = new FormData(e.currentTarget);
-
         
         // Собираем данные комнаты
-        const roomLength = parseFloat(getFormData("lengthM", 6.5) as string);
-        const roomWidth = parseFloat(getFormData("widthM", 6.5) as string);
-        const roomHeight = parseFloat(getFormData("heightM", 6.5) as string);
+        const roomLength = parseFloat(formData.get("lengthM") as string) || 6.5;
+        const roomWidth = parseFloat(formData.get("widthM") as string) || 6.5;
+        const roomHeight = parseFloat(formData.get("heigthM") as string) || 6.5;
         // Собираем данные окон
         const windowsParam = state.windowsParam.map((item: ParamData) => ({
-            height: parseFloat(getFormData(`height-windowsParam-${item.id}`, 0) as string),
-            width: parseFloat(getFormData(`width-windowsParam-${item.id}`, 0) as string),
+            height: parseFloat(formData.get(`height-windowsParam-${item.id}`) as string) || 0,
+            width: parseFloat(formData.get(`width-windowsParam-${item.id}`) as string) || 0,
             id: item.id,
         }));
 
         // Собираем данные дверей
         const doorsParam = state.doorsParam.map((item: ParamData) => ({
-            height: parseFloat(getFormData(`height-doorsParam-${item.id}`, 0) as string),
-            width: parseFloat(getFormData(`width-doorsParam-${item.id}`, 0) as string),
+            height: parseFloat(formData.get(`height-doorsParam-${item.id}`) as string) || 0,
+            width: parseFloat(formData.get(`width-doorsParam-${item.id}`) as string) || 0,
             id: item.id,
         }));
 

@@ -6,12 +6,11 @@ import icon from "../../assets/magic-wand.svg";
 interface ButtomProps{
     children: React.ReactNode;
     type: "button" | "submit" | "reset" | undefined;
-    formName: string;
-    //function 
-    onClick: (() => void) | undefined;
+    formName?: string;
+    onClick?: () => void;
 }
 
-const Button: React.FC<ButtomProps> = ({children, type, formName = undefined, onClick = undefined}) => {
+const Button: React.FC<ButtomProps> = ({children, type, formName, onClick}) => {
     return(
         <button className={styles.button} type={type} form={formName} onClick={onClick}>
             <img src={icon} alt="Icon" />

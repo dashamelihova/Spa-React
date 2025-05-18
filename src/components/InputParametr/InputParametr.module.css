@@ -51,6 +51,10 @@
     background-color: white;
 }
 
+.inputParameterInput:disabled::placeholder{
+   color:rgba(17, 17, 17, 0.64); 
+}
+
 /* Дополнительно убираем псевдоэлементы спиннеров */
 .inputParameterInput::-webkit-inner-spin-button,
 .inputParameterInput::-webkit-outer-spin-button {

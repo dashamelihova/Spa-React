@@ -38,6 +38,10 @@
     gap: 24px;
 }
 
+.wrapper .main > .section:nth-child(2) .sectionTitle{
+    padding-right: 36px;
+}
+
 .closeBtn{
     position: absolute;
     width: 36px;
@@ -80,6 +84,7 @@ hr{
     flex-wrap: wrap;
 }
 
+
 @media (min-width: 768px) { 
     .wrapper{
         max-width: 990px;
@@ -99,5 +104,4 @@ hr{
         /* flex-direction: row; */
         grid-template-columns: repeat(3, 1fr);
     }
-    
 }
